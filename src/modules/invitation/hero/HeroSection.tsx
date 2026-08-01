@@ -1,7 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Particles } from '@/common/components/particles/Particles'
-import { useInvitationConfig, useScrollDown } from '@/common/hooks'
+import { useInvitationConfig, useScrollDown, useConfetti } from '@/common/hooks'
+import { ScratchCard } from '@/common/components/scratch-card/ScratchCard'
 import { CaretDownIcon } from '@phosphor-icons/react'
 
 import photo from '@/assets/images/photos/1.jpeg'
@@ -12,6 +13,16 @@ const FLUID_EASE = [0.22, 1, 0.36, 1] as const
 export const HeroSection: React.FC = () => {
     const { sections } = useInvitationConfig()
     const { handleScrollDown } = useScrollDown('hero')
+    const { fireConfetti } = useConfetti()
+    
+    const handleScratchReveal = () => {
+        // Fire another central confetti explosion to double the effect
+        fireConfetti({
+            preset: 'explosion',
+            particleCount: 250,
+            colors: ['#FFD700', '#D4AF37', '#FFF8DC', '#FFFFFF', '#c5a059'],
+        })
+    }
     const rawDate = sections.hero?.date ?? '22.08.2026'
 
     const formattedDate = rawDate
@@ -73,8 +84,18 @@ export const HeroSection: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 3.0, delay: 0.75, ease: FLUID_EASE }}
             >
-                <p className="hero__date">{formattedDate}</p>
-                <p className="hero__location">AGUASCALIENTES - MX</p>
+                <ScratchCard
+                    shape="rect"
+                    foilColor="gold-glitter"
+                    overlayText="Rasca para descubrir"
+                    brushSize={28}
+                    revealPercent={45}
+                    onReveal={handleScratchReveal}
+                    className="hero__scratch"
+                >
+                    <p className="hero__date">{formattedDate}</p>
+                    <p className="hero__location">AGUASCALIENTES - MX</p>
+                </ScratchCard>
             </motion.div>
 
             <motion.button

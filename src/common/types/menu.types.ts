@@ -9,6 +9,7 @@ export interface MenuItem {
     onClick?: () => void
     icon?: React.ReactNode
     isExternal?: boolean
+    isPremium?: boolean
 }
 
 export interface MenuProps {

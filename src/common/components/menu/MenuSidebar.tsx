@@ -1,8 +1,9 @@
 import React from 'react'
-import { XIcon, CaretRightIcon } from '@phosphor-icons/react'
+import { XIcon, CaretRightIcon, GiftIcon } from '@phosphor-icons/react'
 
-import { useMenu } from '@/common/hooks/useMenu'
+import { useMenu, useNavigation } from '@/common/hooks'
 import { MusicPlayer } from '@/common/components/music-player/MusicPlayer'
+import { Button } from '@/common/components/button/Button'
 import type { MenuSidebarProps } from '@/common/types'
 import logo from '@/assets/images/icons/logo.png'
 
@@ -11,9 +12,10 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
     items = [],
     children,
 }) => {
+    const { goTo } = useNavigation()
     const { isMenuOpen, onCloseMenu, activeItems } = useMenu()
 
-    const navItems = items.length > 0 ? items : activeItems
+    const navItems = activeItems.length > 0 ? activeItems : items
 
     const overlayClass = `menu-overlay ${isMenuOpen ? 'menu-overlay--open' : ''}`
     const sidebarClass = `menu-sidebar ${isMenuOpen ? 'menu-sidebar--open' : ''}`
@@ -50,10 +52,10 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
                         <nav className="menu-sidebar__nav">
                             <ul className="menu-sidebar__list">
                                 {navItems.map((item, index) => (
-                                    <li key={index} className="menu-sidebar__item">
+                                    <li key={index} className={`menu-sidebar__item ${item.isPremium ? 'menu-sidebar__item--premium' : ''}`}>
                                         <a
                                             href={item.href || '#'}
-                                            className="menu-sidebar__link"
+                                            className={`menu-sidebar__link ${item.isPremium ? 'menu-sidebar__link--premium' : ''}`}
                                             onClick={() => {
                                                 if (item.onClick) item.onClick()
                                                 onCloseMenu()
@@ -63,7 +65,12 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
                                                 {item.icon && (
                                                     <span className="menu-sidebar__link-icon">{item.icon}</span>
                                                 )}
-                                                <span className="menu-sidebar__link-label">{item.label}</span>
+                                                <div className="menu-sidebar__link-text">
+                                                    <span className="menu-sidebar__link-label">{item.label}</span>
+                                                    {item.isPremium && (
+                                                        <span className="menu-sidebar__link-hint">Toca para abrir</span>
+                                                    )}
+                                                </div>
                                             </div>
                                             <CaretRightIcon size={16} className="menu-sidebar__link-arrow" />
                                         </a>
@@ -72,6 +79,20 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
                             </ul>
                         </nav>
                     )}
+
+                    <div className="menu-sidebar__envelop">
+                        <Button
+                            variant="secondary"
+                            fullWidth
+                            icon={<GiftIcon size={20} weight="light" />}
+                            onClick={() => {
+                                onCloseMenu()
+                                goTo('/envelop')
+                            }}
+                        >
+                            Mi Sobre Digital
+                        </Button>
+                    </div>
 
                     <div className="menu-sidebar__music">
                         <MusicPlayer variant="card" />

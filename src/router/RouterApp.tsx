@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { Envelop, Invitation, Search, Ticket } from '@/modules'
 import { useInvitationConfig, useTicket } from '@/common/hooks'
+import { Menu } from '@/common/components/menu/Menu'
+import { MusicPlayer } from '@/common/components/music-player/MusicPlayer'
 
 export const RouterApp: React.FC = () => {
     const { config } = useInvitationConfig()
@@ -15,6 +17,8 @@ export const RouterApp: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <Menu />
+            <MusicPlayer />
             <Routes>
                 {!hasTicketingSystem ? (
                     <>

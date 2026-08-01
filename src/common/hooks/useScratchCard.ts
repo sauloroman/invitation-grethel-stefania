@@ -2,32 +2,26 @@ import { useRef, useEffect, useState, useCallback } from 'react'
 import { useConfetti } from './useConfetti'
 
 export interface UseScratchCardOptions {
-    /** Radius of scratch brush in pixels (default: 28) */
     brushSize?: number
-    /** Percentage threshold (0-100) to auto-reveal fully (default: 45) */
     revealPercent?: number
-    /** Foil shape mask ('heart' | 'rect', default: 'heart') */
-    shape?: 'heart' | 'rect'
-    /** Foil base fill color (default: 'white') */
+    shape?: 'emerald' | 'plaque' | 'rounded' | 'rect' | 'heart' | 'ellipse'
     foilColor?: string
-    /** Optional custom particle count for reveal celebration (default: 500) */
     confettiParticleCount?: number
-    /** Optional custom colors array for confetti particles */
     confettiColors?: string[]
-    /** Callback fired when content is revealed */
     onReveal?: () => void
-    /** Disable scratch interaction */
+    onScratchStart?: () => void
     disabled?: boolean
 }
 
 export const useScratchCard = ({
     brushSize = 28,
     revealPercent = 45,
-    shape = 'heart',
+    shape = 'emerald',
     foilColor = 'white',
     confettiParticleCount = 500,
     confettiColors,
     onReveal,
+    onScratchStart,
     disabled = false,
 }: UseScratchCardOptions = {}) => {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -39,7 +33,6 @@ export const useScratchCard = ({
 
     const { fireConfetti } = useConfetti()
 
-    // Initialize Canvas Foil Shape
     const initCanvas = useCallback(() => {
         const container = containerRef.current
         const canvas = canvasRef.current
@@ -61,67 +54,171 @@ export const useScratchCard = ({
 
         ctx.save()
 
-        if (shape === 'heart') {
-            // Heart-shaped mask
+        if (shape === 'emerald') {
+            const cut = Math.min(width, height) * 0.18
             ctx.beginPath()
-            ctx.moveTo(width * 0.5, height * 0.28)
+            ctx.moveTo(cut, 0)
+            ctx.lineTo(width - cut, 0)
+            ctx.lineTo(width, cut)
+            ctx.lineTo(width, height - cut)
+            ctx.lineTo(width - cut, height)
+            ctx.lineTo(cut, height)
+            ctx.lineTo(0, height - cut)
+            ctx.lineTo(0, cut)
+            ctx.closePath()
+            ctx.clip()
+        } else if (shape === 'heart') {
+            ctx.beginPath()
+            ctx.moveTo(width * 0.5, height * 0.18)
 
-            // Top left curve
             ctx.bezierCurveTo(
-                width * 0.48, height * 0.12,
-                width * 0.34, height * 0.04,
-                width * 0.20, height * 0.04
+                width * 0.42, height * 0.06,
+                width * 0.28, height * 0.03,
+                width * 0.18, height * 0.08
             )
-            // Left lobe & side
             ctx.bezierCurveTo(
-                width * 0.06, height * 0.04,
-                0, height * 0.16,
-                0, height * 0.34
+                width * 0.04, height * 0.14,
+                width * 0.02, height * 0.34,
+                width * 0.10, height * 0.48
             )
-            // Bottom left taper to point
             ctx.bezierCurveTo(
-                0, height * 0.58,
-                width * 0.26, height * 0.79,
-                width * 0.5, height * 0.98
+                width * 0.18, height * 0.64,
+                width * 0.35, height * 0.82,
+                width * 0.50, height * 0.96
             )
-            // Bottom right taper from point
             ctx.bezierCurveTo(
-                width * 0.74, height * 0.79,
-                width, height * 0.58,
-                width, height * 0.34
+                width * 0.65, height * 0.82,
+                width * 0.82, height * 0.64,
+                width * 0.90, height * 0.48
             )
-            // Right lobe & side
             ctx.bezierCurveTo(
-                width, height * 0.16,
-                width * 0.94, height * 0.04,
-                width * 0.80, height * 0.04
+                width * 0.98, height * 0.34,
+                width * 0.96, height * 0.14,
+                width * 0.82, height * 0.08
             )
-            // Top right curve back to center dip
             ctx.bezierCurveTo(
-                width * 0.66, height * 0.04,
-                width * 0.52, height * 0.12,
-                width * 0.5, height * 0.28
+                width * 0.72, height * 0.03,
+                width * 0.58, height * 0.06,
+                width * 0.50, height * 0.18
             )
+            ctx.closePath()
+            ctx.clip()
+        } else if (shape === 'ellipse') {
+            ctx.beginPath()
+            ctx.ellipse(width / 2, height / 2, width / 2, height / 2, 0, 0, 2 * Math.PI)
+            ctx.closePath()
+            ctx.clip()
+        } else if (shape === 'rounded') {
+            const radius = Math.min(width, height) * 0.15
+            ctx.beginPath()
+            ctx.roundRect(0, 0, width, height, radius)
             ctx.closePath()
             ctx.clip()
         }
 
-        // Fill with paper color (soft blush pink gradient when white/default)
-        const isWhiteOrDefault = foilColor === 'white' || !foilColor
-        if (isWhiteOrDefault) {
-            const gradient = ctx.createLinearGradient(0, 0, width, height)
-            gradient.addColorStop(0, '#fef7f5')
-            gradient.addColorStop(0.5, '#f9ebe6')
-            gradient.addColorStop(1, '#f4ded7')
+        const isWhiteFoil = foilColor === 'white' || foilColor === 'white-glitter' || foilColor === '#fcfbf9'
+        const isGoldFoil = foilColor === 'gold' || foilColor === 'gold-glitter' || foilColor === 'special' || foilColor === '#c5a059' || !foilColor
+
+        if (isWhiteFoil) {
+            const gradient = ctx.createRadialGradient(
+                width * 0.45, height * 0.35, width * 0.05,
+                width * 0.5, height * 0.5, width * 0.7
+            )
+            gradient.addColorStop(0, '#ffffff')
+            gradient.addColorStop(0.35, '#f9f8f6')
+            gradient.addColorStop(0.7, '#ece9e4')
+            gradient.addColorStop(1, '#dfdcd6')
             ctx.fillStyle = gradient
+            if (shape === 'rect') ctx.fillRect(0, 0, width, height)
+            else ctx.fill()
+
+            ctx.save()
+            const sparkleCount = Math.floor((width * height) / 50)
+            for (let i = 0; i < sparkleCount; i++) {
+                const sx = Math.random() * width
+                const sy = Math.random() * height
+                const size = Math.random() * 1.8 + 0.4
+                const opacity = Math.random() * 0.8 + 0.2
+                const isSilver = Math.random() > 0.5
+                ctx.fillStyle = isSilver
+                    ? `rgba(215, 222, 232, ${opacity})`
+                    : `rgba(255, 255, 255, ${opacity * 1.3})`
+                ctx.beginPath()
+                ctx.arc(sx, sy, size, 0, Math.PI * 2)
+                ctx.fill()
+            }
+
+            const starCount = 10
+            for (let s = 0; s < starCount; s++) {
+                const starX = (0.2 + Math.random() * 0.6) * width
+                const starY = (0.2 + Math.random() * 0.6) * height
+                const starLen = Math.random() * 4 + 3
+                ctx.strokeStyle = `rgba(255, 255, 255, ${Math.random() * 0.7 + 0.3})`
+                ctx.lineWidth = 1.2
+                ctx.beginPath()
+                ctx.moveTo(starX - starLen, starY)
+                ctx.lineTo(starX + starLen, starY)
+                ctx.moveTo(starX, starY - starLen)
+                ctx.lineTo(starX, starY + starLen)
+                ctx.stroke()
+            }
+            ctx.restore()
+        } else if (isGoldFoil) {
+            const gradient = ctx.createRadialGradient(
+                width * 0.45, height * 0.35, width * 0.05,
+                width * 0.5, height * 0.5, width * 0.75
+            )
+            gradient.addColorStop(0, '#ebd07f')
+            gradient.addColorStop(0.25, '#d4af37')
+            gradient.addColorStop(0.55, '#c5a059')
+            gradient.addColorStop(0.8, '#a37c3f')
+            gradient.addColorStop(1, '#664c1e')
+            ctx.fillStyle = gradient
+            if (shape === 'rect') ctx.fillRect(0, 0, width, height)
+            else ctx.fill()
+
+            ctx.save()
+            const sparkleCount = Math.floor((width * height) / 45)
+            for (let i = 0; i < sparkleCount; i++) {
+                const sx = Math.random() * width
+                const sy = Math.random() * height
+                const size = Math.random() * 1.8 + 0.4
+                const opacity = Math.random() * 0.8 + 0.2
+                const type = Math.random()
+                if (type < 0.4) {
+                    ctx.fillStyle = `rgba(255, 235, 180, ${opacity})`
+                } else if (type < 0.7) {
+                    ctx.fillStyle = `rgba(212, 175, 55, ${opacity * 1.2})`
+                } else {
+                    ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 1.3})`
+                }
+                ctx.beginPath()
+                ctx.arc(sx, sy, size, 0, Math.PI * 2)
+                ctx.fill()
+            }
+
+            const starCount = 12
+            for (let s = 0; s < starCount; s++) {
+                const starX = (0.15 + Math.random() * 0.7) * width
+                const starY = (0.15 + Math.random() * 0.7) * height
+                const starLen = Math.random() * 4 + 3
+                const isGold = Math.random() > 0.5
+                ctx.strokeStyle = isGold
+                    ? `rgba(255, 215, 0, ${Math.random() * 0.7 + 0.3})`
+                    : `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2})`
+                ctx.lineWidth = 1.2
+                ctx.beginPath()
+                ctx.moveTo(starX - starLen, starY)
+                ctx.lineTo(starX + starLen, starY)
+                ctx.moveTo(starX, starY - starLen)
+                ctx.lineTo(starX, starY + starLen)
+                ctx.stroke()
+            }
+            ctx.restore()
         } else {
             ctx.fillStyle = foilColor
-        }
-
-        if (shape === 'rect') {
-            ctx.fillRect(0, 0, width, height)
-        } else {
-            ctx.fill()
+            if (shape === 'rect') ctx.fillRect(0, 0, width, height)
+            else ctx.fill()
         }
 
         ctx.restore()
@@ -140,7 +237,6 @@ export const useScratchCard = ({
         return () => window.removeEventListener('resize', handleResize)
     }, [initCanvas, isRevealed])
 
-    // Get pointer coordinates relative to canvas
     const getPos = (e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
         const canvas = canvasRef.current
         if (!canvas) return { x: 0, y: 0 }
@@ -163,7 +259,6 @@ export const useScratchCard = ({
         }
     }
 
-    // Scratch line drawing
     const scratchLine = (from: { x: number; y: number }, to: { x: number; y: number }) => {
         const canvas = canvasRef.current
         if (!canvas) return
@@ -182,7 +277,6 @@ export const useScratchCard = ({
         ctx.stroke()
     }
 
-    // Check scraped percentage
     const checkPercentage = useCallback(() => {
         if (isRevealed) return
 
@@ -220,7 +314,7 @@ export const useScratchCard = ({
             setIsRevealed(true)
             fireConfetti({
                 particleCount: confettiParticleCount,
-                colors: confettiColors ?? ['#4a4933', '#6b6b47', '#9a9180', '#5e6047', '#f5f8e5', '#e6dfd3'],
+                colors: confettiColors ?? ['#ebd07f', '#d4af37', '#c5a059', '#ffffff', '#e6dfd3'],
                 preset: 'side-cannons',
             })
             if (onReveal) {
@@ -229,9 +323,11 @@ export const useScratchCard = ({
         }
     }, [isRevealed, revealPercent, confettiParticleCount, confettiColors, onReveal, fireConfetti])
 
-    // Interaction handlers
     const startScratch = (e: React.MouseEvent | React.TouchEvent) => {
         if (disabled || isRevealed) return
+        if (!hasStarted && onScratchStart) {
+            onScratchStart()
+        }
         setIsDrawing(true)
         setHasStarted(true)
         const pos = getPos(e)

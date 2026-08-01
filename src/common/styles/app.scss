@@ -17,6 +17,7 @@
 @use '../components/accordion/accordion';
 @use '../components/countdown/countdown';
 @use '../components/particles/particles';
+@use '../components/scratch-card/scratch-card';
 
 // Invitation Module Sections
 @use '../../modules/invitation/hero/hero';
@@ -31,3 +32,6 @@
 @use '../../modules/invitation/gallery/gallery';
 @use '../../modules/invitation/confirmation/confirmation';
 @use '../../modules/invitation/farewell/farewell';
+
+// Invitation Envelop
+@use '../../modules/envelop/_envelop.scss';

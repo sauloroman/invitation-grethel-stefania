@@ -88,6 +88,28 @@
         gap: 0.6rem;
     }
 
+    &__scratch {
+        display: block;
+        width: 100%;
+        min-width: 25rem;
+        max-width: 88vw;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        padding: 0;
+        overflow: visible;
+
+        .hero__date {
+            margin: 0;
+        }
+
+        .hero__location {
+            margin-top: 0.4rem;
+        }
+    }
+
     &__date {
         font-family: vars.$font-serif;
         font-size: 1.7rem;

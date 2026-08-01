@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { SectionHeader } from '@/common/components/section-header/SectionHeader'
 import { Button } from '@/common/components/button/Button'
-import { PaletteIcon, InfoIcon, ArrowUpRightIcon } from '@phosphor-icons/react'
+import { InfoIcon, ArrowUpRightIcon } from '@phosphor-icons/react'
 import womenDressCode from '@/assets/images/icons/women-dress-code.svg'
 import menDressCode from '@/assets/images/icons/men-dress-code.svg'
 
@@ -43,7 +43,6 @@ export const DressCodeSection: React.FC = () => {
                 </motion.div>
 
                 <div className="dress-code__grid">
-                    {/* Damas */}
                     <motion.div
                         className="dress-code__item"
                         initial={{ opacity: 0, y: 30, scale: 0.96 }}
@@ -122,7 +121,6 @@ export const DressCodeSection: React.FC = () => {
                         </motion.div>
                     </motion.div>
 
-                    {/* Caballeros */}
                     <motion.div
                         className="dress-code__item"
                         initial={{ opacity: 0, y: 30, scale: 0.96 }}
@@ -189,7 +187,6 @@ export const DressCodeSection: React.FC = () => {
                     </motion.div>
                 </div>
 
-                {/* Sección Colores Reservados */}
                 <motion.div
                     className="dress-code__reserved"
                     initial={{ opacity: 0, y: 30, scale: 0.97 }}
@@ -204,7 +201,6 @@ export const DressCodeSection: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 2.5, delay: 0.75, ease: FLUID_EASE }}
                     >
-                        <PaletteIcon size={24} weight="thin" className="dress-code__reserved-icon" />
                         <h4 className="dress-code__reserved-title">Colores Reservados</h4>
                     </motion.div>
                     <motion.p

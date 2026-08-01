@@ -1,12 +1,16 @@
 import React from 'react'
 import { ListIcon } from '@phosphor-icons/react'
+import { useLocation } from 'react-router-dom'
 
 import { Button } from '@/common/components/button/Button'
 import { useMenu } from '@/common/hooks'
 import type { MenuProps } from '@/common/types'
 import { MenuSidebar } from './MenuSidebar'
 
+const HIDDEN_ROUTES = ['/envelop']
+
 export const Menu: React.FC<MenuProps> = (props) => {
+    const { pathname } = useLocation()
     const {
         isMenuVisible,
         activeVariant,
@@ -16,7 +20,7 @@ export const Menu: React.FC<MenuProps> = (props) => {
         onOpenMenu,
     } = useMenu(props)
 
-    if (!isMenuVisible) return null
+    if (!isMenuVisible || HIDDEN_ROUTES.includes(pathname)) return null
 
     return (
         <>

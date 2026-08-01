@@ -6,8 +6,6 @@ import { store } from '@/store/store'
 
 import { ModalMaster } from '@/common/components/modal/ModalMaster'
 import { ToastContainer } from '@/common/components/toast/ToastContainer'
-import { Menu } from '@/common/components/menu/Menu'
-import { MusicPlayer } from '@/common/components/music-player/MusicPlayer'
 import { useInvitationConfig } from '@/common/hooks'
 
 const InvitationAppContent: React.FC = () => {
@@ -23,8 +21,6 @@ const InvitationAppContent: React.FC = () => {
       <RouterApp />
       <ModalMaster />
       <ToastContainer />
-      <Menu />
-      <MusicPlayer />
     </>
   )
 }

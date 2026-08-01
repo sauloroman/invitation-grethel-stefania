@@ -5,6 +5,7 @@ import type { UseScratchCardOptions } from '@/common/hooks'
 export interface ScratchCardProps extends UseScratchCardOptions {
     children: React.ReactNode
     overlayText?: string
+    overlayImage?: string
     className?: string
     style?: React.CSSProperties
 }
@@ -12,6 +13,7 @@ export interface ScratchCardProps extends UseScratchCardOptions {
 export const ScratchCard: React.FC<ScratchCardProps> = ({
     children,
     overlayText = 'Rasca para descubrir',
+    overlayImage,
     className = '',
     style,
     ...options
@@ -46,6 +48,14 @@ export const ScratchCard: React.FC<ScratchCardProps> = ({
                     onTouchMove={moveScratch}
                     onTouchEnd={stopScratch}
                     onTouchCancel={stopScratch}
+                />
+            )}
+
+            {overlayImage && !isRevealed && (
+                <img
+                    src={overlayImage}
+                    alt=""
+                    className={`scratch-card__overlay-image ${hasStarted ? 'scratch-card__overlay-image--scratching' : ''}`}
                 />
             )}
 
