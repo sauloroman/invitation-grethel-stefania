@@ -8,7 +8,7 @@ import name from '@/assets/images/icons/name-2.png'
 export const HeroSection: React.FC = () => {
     const { sections } = useInvitationConfig()
     const { handleScrollDown } = useScrollDown('hero')
-    const rawDate = sections.hero.date ?? '22.08.2026'
+    const rawDate = sections.hero?.date ?? '22.08.2026'
 
     const formattedDate = rawDate
         .split('.')
@@ -50,4 +50,3 @@ export const HeroSection: React.FC = () => {
         </div>
     )
 }
-

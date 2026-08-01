@@ -15,7 +15,9 @@ export const useSaveTheDate = () => {
         const names = sections.hero?.names ?? 'Grethel Stefania'
         const eventTitle = customOptions?.title ?? `XV años de ${names}`
         const description = '¡Nos encantaría que nos acompañes en este momento tan especial!'
-        const location = customOptions?.location ?? sections.places?.locations?.[0]?.location ?? sections.hero?.location ?? ''
+        const defaultLoc = typeof sections.places?.locations?.[0]?.location === 'string' ? sections.places.locations[0].location : ''
+        const heroLoc = typeof (sections.hero as Record<string, unknown> | undefined)?.location === 'string' ? ((sections.hero as Record<string, unknown>).location as string) : ''
+        const location = customOptions?.location ?? (defaultLoc || heroLoc)
         const rawTargetDate = customOptions?.startDate ?? sections.countdown?.targetDate ?? '2026-08-22T16:00:00'
 
         const startDate = new Date(rawTargetDate)
@@ -39,7 +41,7 @@ export const useSaveTheDate = () => {
         const nowFormatted = formatDateToICal(new Date())
 
         const escapeICal = (text: string) =>
-            text.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n')
+            (text || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n')
 
         const icsContent = [
             'BEGIN:VCALENDAR',

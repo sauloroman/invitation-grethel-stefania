@@ -11,7 +11,7 @@ export const CountdownSection: React.FC = () => {
     const { downloadSaveTheDate } = useSaveTheDate()
     const { sections } = useInvitationConfig()
     const { monthTitle, weekdays, days } = useCalendar({ month: 8, year: 2026, featuredDay: 22 })
-    const targetDate = sections.countdown.targetDate
+    const targetDate = sections.countdown?.targetDate ?? '2026-08-22T16:00:00'
 
     return (
         <div id='countdown-section' className="countdown-section">
@@ -71,5 +71,3 @@ export const CountdownSection: React.FC = () => {
         </div>
     )
 }
-
-
