@@ -168,11 +168,11 @@ export const useScratchCard = ({
                 width * 0.45, height * 0.35, width * 0.05,
                 width * 0.5, height * 0.5, width * 0.75
             )
-            gradient.addColorStop(0, '#ebd07f')
-            gradient.addColorStop(0.25, '#d4af37')
-            gradient.addColorStop(0.55, '#c5a059')
-            gradient.addColorStop(0.8, '#a37c3f')
-            gradient.addColorStop(1, '#664c1e')
+            gradient.addColorStop(0, '#f5efe3')
+            gradient.addColorStop(0.25, '#dcd0b9')
+            gradient.addColorStop(0.55, '#c2b396')
+            gradient.addColorStop(0.8, '#a39478')
+            gradient.addColorStop(1, '#695f4c')
             ctx.fillStyle = gradient
             if (shape === 'rect') ctx.fillRect(0, 0, width, height)
             else ctx.fill()
@@ -186,9 +186,9 @@ export const useScratchCard = ({
                 const opacity = Math.random() * 0.8 + 0.2
                 const type = Math.random()
                 if (type < 0.4) {
-                    ctx.fillStyle = `rgba(255, 235, 180, ${opacity})`
+                    ctx.fillStyle = `rgba(245, 239, 227, ${opacity})`
                 } else if (type < 0.7) {
-                    ctx.fillStyle = `rgba(212, 175, 55, ${opacity * 1.2})`
+                    ctx.fillStyle = `rgba(194, 179, 150, ${opacity * 1.2})`
                 } else {
                     ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 1.3})`
                 }
