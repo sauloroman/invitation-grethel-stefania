@@ -26,6 +26,7 @@
   "sections": {
     "hero": {
       "showHero": true,
+      "title": "Inicio",
       "names": "Grethel Stefania",
       "subtitle": "Nos complace invitarte a celebrar el día más importante de nuestras vidas",
       "date": "22.08.2026",
@@ -33,14 +34,21 @@
     },
     "message": {
       "showMessage": true,
+      "title": "Mensaje",
       "message": "Te invitamos de corazón a acompañarnos en este momento tan especial y celebrar juntos el amor que nos une."
     },
     "countdown": {
       "showCountdown": true,
+      "title": "Cuenta Regresiva",
       "targetDate": "2026-08-22T17:00:00"
+    },
+    "family": {
+      "showFamily": true,
+      "title": "Familia"
     },
     "places": {
       "showPlaces": true,
+      "title": "Ubicación",
       "locations": [
         {
           "title": "Ceremonia Religiosa",
@@ -58,8 +66,22 @@
         }
       ]
     },
+    "gallery": {
+      "showGallery": true,
+      "title": "Galería",
+      "images": []
+    },
+    "dressCode": {
+      "showDressCode": true,
+      "title": "Código de Vestimenta"
+    },
+    "masquerade": {
+      "showMasquerade": true,
+      "title": "Temática"
+    },
     "itinerary": {
       "showItinerary": true,
+      "title": "Itinerario",
       "itinerary": [
         {
           "time": "19:00 HRS",
@@ -95,37 +117,13 @@
         }
       ]
     },
-    "dressCode": {
-      "showDressCode": true,
-      "title": "Código de Vestimenta",
-      "description": "Te sugerimos vestir de etiqueta semi-formal.",
-      "attire": {
-        "men": "Traje oscuro y corbata.",
-        "women": "Vestido largo o cocktail."
-      },
-      "colors": {
-        "suggested": [
-          "negro",
-          "azul oscuro"
-        ],
-        "avoid": [
-          "blanco",
-          "beige"
-        ]
-      }
-    },
-    "gallery": {
-      "showGallery": true,
-      "title": "Galería de Fotos",
-      "images": []
-    },
     "presents": {
       "showPresents": true,
-      "title": "Mesa de Regalos Liverpool",
-      "url": "https://mesaderegalos.liverpool.com.mx"
+      "title": "Obsequios"
     },
     "confirmation": {
-      "showConfirmation": true
+      "showConfirmation": true,
+      "title": "Confirmación"
     }
   }
 }

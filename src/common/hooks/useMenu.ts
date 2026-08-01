@@ -9,12 +9,14 @@ const SECTION_DEFAULTS: Record<string, { label: string; href: string }> = {
     hero: { label: 'Inicio', href: '#hero' },
     message: { label: 'Mensaje', href: '#message' },
     countdown: { label: 'Cuenta Regresiva', href: '#countdown' },
+    family: { label: 'Familia', href: '#family' },
     places: { label: 'Ubicación', href: '#places' },
-    itinerary: { label: 'Itinerario', href: '#itinerary' },
-    dressCode: { label: 'Código de Vestimenta', href: '#dress-code' },
     gallery: { label: 'Galería', href: '#gallery' },
-    presents: { label: 'Mesa de Regalos', href: '#presents' },
-    confirmation: { label: 'Confirmar Asistencia', href: '#confirmation' },
+    dressCode: { label: 'Código de Vestimenta', href: '#dress-code' },
+    masquerade: { label: 'Temática', href: '#masquerade' },
+    itinerary: { label: 'Itinerario', href: '#itinerary' },
+    presents: { label: 'Obsequios', href: '#presents' },
+    confirmation: { label: 'Confirmación', href: '#confirmation' },
 }
 
 const toKebabCase = (str: string) => str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()

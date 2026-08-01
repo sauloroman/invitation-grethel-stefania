@@ -14,7 +14,7 @@ export const CountdownSection: React.FC = () => {
     const targetDate = sections.countdown?.targetDate ?? '2026-08-22T16:00:00'
 
     return (
-        <div id='countdown-section' className="countdown-section">
+        <div id="countdown" className="countdown-section">
             <div className="countdown-section__bg" style={{ backgroundImage: `url(${bg})` }}></div>
             <div className="countdown-section__content">
 

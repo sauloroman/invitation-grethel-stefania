@@ -1,14 +1,14 @@
 import React from 'react'
 import { Particles } from '@/common/components/particles/Particles'
 import { useInvitationConfig } from '@/common/hooks'
-import photo from '@/assets/images/photos/1.jpeg'
+import photo from '@/assets/images/photos/5.jpeg'
 
 export const Farewell: React.FC = () => {
     const { sections } = useInvitationConfig()
     const names = sections.hero?.names || 'Grethel Stefania'
 
     return (
-        <footer className="farewell">
+        <footer id="farewell" className="farewell">
             <Particles
                 variant="glitter"
                 count={80}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { SectionHeader } from '@/common/components/section-header/SectionHeader'
 import { ConfirmationForm } from './ConfirmationForm'
-import envelop from '@/assets/images/icons/presents-envelop.svg'
+import envelop from '@/assets/images/icons/buzon.svg'
 
 export const ConfirmationSection: React.FC = () => {
     return (
