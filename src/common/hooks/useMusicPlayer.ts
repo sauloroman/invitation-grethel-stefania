@@ -1,24 +1,38 @@
-import { useRef, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '@/store/store'
 import { playMusic, pauseMusic, toggleMusic } from '@/store/ui/music.slice'
 import { useInvitationConfig } from './useInvitationConfig'
 import type { MusicPlayerProps, MusicPlayerVariant, ButtonVariant } from '@/common/types'
+import song from '@/assets/music/song.mp3'
+
+let globalAudio: HTMLAudioElement | null = null
+
+const getGlobalAudio = () => {
+    if (typeof window === 'undefined') return null
+    if (!globalAudio) {
+        globalAudio = new Audio(song)
+        globalAudio.loop = true
+        globalAudio.preload = 'auto'
+    }
+    return globalAudio
+}
 
 export const useMusicPlayer = (props?: MusicPlayerProps) => {
     const dispatch = useDispatch()
     const isPlaying = useSelector((state: RootState) => state.music.isPlaying)
-    const audioRef = useRef<HTMLAudioElement | null>(null)
     const { theme, config } = useInvitationConfig()
 
     useEffect(() => {
-        if (!audioRef.current) return
+        const audio = getGlobalAudio()
+        if (!audio) return
+
         if (isPlaying) {
-            audioRef.current.play().catch(() => {
+            audio.play().catch(() => {
                 dispatch(pauseMusic())
             })
         } else {
-            audioRef.current.pause()
+            audio.pause()
         }
     }, [isPlaying, dispatch])
 
@@ -35,7 +49,6 @@ export const useMusicPlayer = (props?: MusicPlayerProps) => {
     return {
         isPlaying,
         isMusicVisible,
-        audioRef,
         activeVariant,
         activeBtnVariant,
         activeSongTitle,

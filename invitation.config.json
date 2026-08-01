@@ -7,7 +7,29 @@
       "show": true,
       "variant": "bar",
       "title": "Grethel Stefania",
-      "buttonVariant": "icon"
+      "buttonVariant": "icon",
+      "items": [
+        {
+          "label": "Inicio",
+          "href": "#hero"
+        },
+        {
+          "label": "Ubicación",
+          "href": "#places"
+        },
+        {
+          "label": "Itinerario",
+          "href": "#itinerary"
+        },
+        {
+          "label": "Galería",
+          "href": "#gallery"
+        },
+        {
+          "label": "Confirmación",
+          "href": "#confirmation"
+        }
+      ]
     },
     "music": {
       "show": true,

@@ -20,8 +20,8 @@
     position: relative;
     overflow: hidden;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    border-radius: 100px !important;
-    text-transform: uppercase !important;
+    border-radius: 100px;
+    text-transform: uppercase;
 
     &:focus-visible {
         outline: 2px solid vars.$color-primary;
@@ -175,7 +175,7 @@
     }
 
     &--radius-none {
-        border-radius: 0;
+        border-radius: 0 !important;
     }
 
     &--radius-sm {

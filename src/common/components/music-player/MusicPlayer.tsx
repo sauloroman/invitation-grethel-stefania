@@ -2,14 +2,12 @@ import React from 'react'
 import { PlayIcon, PauseIcon, MusicNotesIcon } from '@phosphor-icons/react'
 import { useMusicPlayer } from '@/common/hooks'
 import { Button } from '../button/Button'
-import song from '@/assets/music/song.mp3'
 import type { MusicPlayerProps } from '@/common/types'
 
 export const MusicPlayer: React.FC<MusicPlayerProps> = (props) => {
     const {
         isPlaying,
         isMusicVisible,
-        audioRef,
         activeVariant,
         activeBtnVariant,
         activeSongTitle,
@@ -25,8 +23,6 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = (props) => {
 
     return (
         <div className={combinedClassName}>
-            <audio ref={audioRef} src={song} loop preload="auto" />
-
             {activeVariant === 'floating' ? (
                 <Button
                     isFloating
@@ -69,16 +65,15 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = (props) => {
                         variant={activeBtnVariant}
                         size="sm"
                         onClick={onToggleMusic}
+                        aria-label={isPlaying ? 'Pausar música' : 'Reproducir música'}
                         icon={
                             isPlaying ? (
-                                <PauseIcon size={24} weight="fill" />
+                                <PauseIcon size={20} weight="fill" />
                             ) : (
-                                <PlayIcon size={24} weight="fill" />
+                                <PlayIcon size={20} weight="fill" />
                             )
                         }
-                    >
-                        {isPlaying ? 'Pausar' : 'Reproducir'}
-                    </Button>
+                    />
                 </div>
             )}
         </div>

@@ -22,12 +22,21 @@
     }
 
     &__header {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    &__ornament {
+        width: 6rem;
+        height: 1px;
+        background-color: vars.$color-tertiary-500;
+        margin: 0 auto 2.5rem;
+        transform-origin: center;
+        opacity: 0.6;
     }
 
     &__text {
         @include mix.textSerifUppercase(vars.$font-serif);
-        margin-bottom: 0;
+
     }
 
     &__photo {

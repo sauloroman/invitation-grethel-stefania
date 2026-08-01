@@ -5,6 +5,7 @@ import menuReducer from './ui/menu.slice'
 import musicReducer from './ui/music.slice'
 import themeReducer from './ui/theme.slice'
 import ticketReducer from './ticket/ticket.slice'
+import confirmationReducer from './confirmation/confirmation.slice'
 
 export const store = configureStore({
     reducer: {
@@ -16,7 +17,8 @@ export const store = configureStore({
 
         // FEATURES STATE
         ticket: ticketReducer,
-    }
+        confirmation: confirmationReducer,
+    },
 })
 
 export type RootState = ReturnType<typeof store.getState>

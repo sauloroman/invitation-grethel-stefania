@@ -4,6 +4,7 @@
 .itinerary {
     position: relative;
     background-color: #ffffff;
+    overflow: hidden;
 
     &__img {
         width: 100%;
@@ -165,5 +166,31 @@
         line-height: 1.4;
         text-transform: uppercase;
         letter-spacing: 0.08em;
+    }
+
+    /* Maceteros en la parte inferior */
+    &__maceteros {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        margin-top: 2rem;
+        padding: 0 1.5rem;
+        pointer-events: none;
+    }
+
+    &__macetero {
+        width: 9rem;
+        max-width: 32vw;
+        height: auto;
+        display: block;
+
+        &--left {
+            transform: scaleX(1);
+        }
+
+        &--right {
+            transform: scaleX(-1);
+        }
     }
 }

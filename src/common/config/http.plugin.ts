@@ -1,8 +1,16 @@
-import axios from "axios";
+import axios from 'axios'
+
+const rawBackendUrl = (import.meta.env.VITE_BACKEND_URL || '').trim()
+
+const formattedUrl = rawBackendUrl
+    ? (rawBackendUrl.startsWith('http://') || rawBackendUrl.startsWith('https://')
+        ? rawBackendUrl
+        : `https://${rawBackendUrl}`)
+    : ''
 
 export const instance = axios.create({
-    baseURL: `${import.meta.env.VITE_BACKEND_URL}/api`,
+    baseURL: `${formattedUrl.replace(/\/$/, '')}/api`,
     headers: {
-        'Content-Type': 'application-json'
-    }
+        'Content-Type': 'application/json',
+    },
 })

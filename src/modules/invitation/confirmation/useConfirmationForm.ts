@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
-import { useConfetti, useToast } from '@/common/hooks'
+import { useConfetti, useToast, useConfirmation } from '@/common/hooks'
 
 export interface ConfirmationFormData {
     attending: 'si' | 'no'
@@ -20,6 +20,7 @@ export const useConfirmationForm = (options: UseConfirmationFormOptions = {}) =>
 
     const { fireConfetti } = useConfetti()
     const { showSuccess, showInfo } = useToast()
+    const { registerConfirmation, isLoading: isApiLoading } = useConfirmation()
 
     const {
         register,
@@ -73,22 +74,40 @@ export const useConfirmationForm = (options: UseConfirmationFormOptions = {}) =>
         }
     }
 
-    const onSubmit = (data: ConfirmationFormData) => {
-        setSubmittedData(data)
-        setIsSubmitted(true)
+    const onSubmit = async (data: ConfirmationFormData) => {
+        const willAttend = data.attending === 'si'
+        const nameParts = data.fullName.trim().split(' ')
+        const firstName = nameParts[0] || 'Invitado'
+        const lastName = nameParts.slice(1).join(' ') || ' '
 
-        if (data.attending === 'si') {
-            fireConfetti({
-                preset: 'side-cannons',
-                particleCount: 120,
+        try {
+            await registerConfirmation({
+                firstName,
+                lastName,
+                phone: '0000000000',
+                willAttend,
+                adultsQuantity: willAttend ? (data.adults || 1) : 0,
             })
-            showSuccess('¡Muchas gracias por confirmar tu asistencia!')
-        } else {
-            showInfo('Gracias por avisarnos. Lamentamos que no puedas acompañarnos.')
-        }
 
-        if (onSuccessSubmit) {
-            onSuccessSubmit(data)
+            setSubmittedData(data)
+            setIsSubmitted(true)
+
+            if (willAttend) {
+                fireConfetti({
+                    preset: 'side-cannons',
+                    particleCount: 120,
+                })
+                showSuccess('¡Muchas gracias por confirmar tu asistencia!')
+            } else {
+                showInfo('Gracias por avisarnos. Lamentamos que no puedas acompañarnos.')
+            }
+
+            if (onSuccessSubmit) {
+                onSuccessSubmit(data)
+            }
+        } catch (error) {
+            console.error('Error al registrar la confirmación:', error)
+            showInfo('Hubo un inconveniente al registrar la confirmación. Por favor inténtalo de nuevo.')
         }
     }
 
@@ -107,7 +126,7 @@ export const useConfirmationForm = (options: UseConfirmationFormOptions = {}) =>
         register,
         handleSubmit,
         errors,
-        isSubmitting,
+        isSubmitting: isSubmitting || isApiLoading,
         attending,
         adults,
         childrenCount,

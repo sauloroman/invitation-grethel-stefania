@@ -1,10 +1,13 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { Particles } from '@/common/components/particles/Particles'
 import { useInvitationConfig, useScrollDown } from '@/common/hooks'
 import { CaretDownIcon } from '@phosphor-icons/react'
 
 import photo from '@/assets/images/photos/1.jpeg'
 import name from '@/assets/images/icons/name-2.png'
+
+const FLUID_EASE = [0.22, 1, 0.36, 1] as const
 
 export const HeroSection: React.FC = () => {
     const { sections } = useInvitationConfig()
@@ -29,38 +32,66 @@ export const HeroSection: React.FC = () => {
                 zIndex={3}
             />
 
-            <div className="hero__img">
-                <div className="hero__overlay"></div>
+            <motion.div
+                className="hero__img"
+                initial={{ scale: 1.12, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 3.2, ease: FLUID_EASE }}
+            >
+                <motion.div
+                    className="hero__overlay"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2.8, ease: 'easeOut' }}
+                />
                 <img src={photo} alt="Grethel Stefania XV Años" />
-            </div>
+            </motion.div>
 
-            <div className="hero__subtitle">
+            <motion.div
+                className="hero__subtitle"
+                initial={{ opacity: 0, y: -18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 3.0, delay: 0.25, ease: FLUID_EASE }}
+            >
                 <span className="hero__subtitle-text">Mis</span>
                 <span className="hero__subtitle-script">XV</span>
                 <span className="hero__subtitle-text">AÑOS</span>
-            </div>
+            </motion.div>
 
-            <div className="hero__names">
+            <motion.div
+                className="hero__names"
+                initial={{ opacity: 0, scale: 0.92, y: 22 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 3.0, delay: 0.5, ease: FLUID_EASE }}
+            >
                 <img src={name} alt="Grethel Stefania" />
-            </div>
+            </motion.div>
 
-            <div className="hero__details">
+            <motion.div
+                className="hero__details"
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 3.0, delay: 0.75, ease: FLUID_EASE }}
+            >
                 <p className="hero__date">{formattedDate}</p>
                 <p className="hero__location">AGUASCALIENTES - MX</p>
-            </div>
+            </motion.div>
 
-            <button
+            <motion.button
                 type="button"
                 className="hero__scroll"
                 onClick={handleScrollDown}
                 aria-label="Deslizar hacia abajo"
+                initial={{ opacity: 0, y: 18, x: '-50%' }}
+                animate={{ opacity: 1, y: 0, x: '-50%' }}
+                transition={{ duration: 2.8, delay: 1.0, ease: FLUID_EASE }}
             >
                 <span className="hero__scroll-text">Desliza</span>
                 <div className="hero__scroll-arrows">
                     <CaretDownIcon className="hero__scroll-arrow hero__scroll-arrow--1" size={16} weight="bold" />
                     <CaretDownIcon className="hero__scroll-arrow hero__scroll-arrow--2" size={16} weight="bold" />
                 </div>
-            </button>
+            </motion.button>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import type { ButtonVariant } from './button.types'
-import type { MenuVariant } from './menu.types'
+import type { MenuItem, MenuVariant } from './menu.types'
 import type { MusicPlayerVariant } from './music-player.types'
 
 export interface ThemeConfig {
@@ -11,6 +11,7 @@ export interface ThemeConfig {
         variant?: MenuVariant
         title?: string
         buttonVariant?: ButtonVariant
+        items?: MenuItem[]
     }
     music?: {
         show?: boolean
@@ -51,4 +52,3 @@ export interface InvitationConfigState {
     config: Record<string, boolean>
     sections: SectionsConfig
 }
-

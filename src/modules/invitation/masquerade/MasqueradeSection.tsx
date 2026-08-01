@@ -1,9 +1,12 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { SectionHeader } from '@/common/components/section-header/SectionHeader'
 import { Button } from '@/common/components/button/Button'
 import maskImg from '@/assets/images/icons/mask-1.png'
 import bg from '@/assets/images/backgrounds/bg-presents-2.svg'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
+
+const FLUID_EASE = [0.22, 1, 0.36, 1] as const
 
 export const MasqueradeSection: React.FC = () => {
     const handlePinterestClick = () => {
@@ -13,28 +16,59 @@ export const MasqueradeSection: React.FC = () => {
     return (
         <section id="masquerade" className="masquerade">
             <div className="masquerade__container">
-                <div className="masquerade__card">
-                    <div className="masquerade__card-bg" style={{ backgroundImage: `url(${bg})` }}></div>
+                <motion.div
+                    className="masquerade__card"
+                    initial={{ opacity: 0, y: 35, scale: 0.97 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 3.0, delay: 0.1, ease: FLUID_EASE }}
+                >
+                    <div className="masquerade__card-bg" style={{ backgroundImage: `url(${bg})` }} />
 
-                    <div className="masquerade__mask-img">
+                    <motion.div
+                        className="masquerade__mask-img"
+                        initial={{ opacity: 0, scale: 0.85, rotate: -10 }}
+                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 3.0, delay: 0.25, ease: FLUID_EASE }}
+                    >
                         <img src={maskImg} alt="Máscara Veneciana - Venetian Masquerade" />
-                    </div>
+                    </motion.div>
 
-                    <SectionHeader
-                        subtitle="Temática del Evento"
-                        title="Venetian Masquerade"
-                    />
+                    <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 2.8, delay: 0.4, ease: FLUID_EASE }}
+                    >
+                        <SectionHeader
+                            subtitle="Temática del Evento"
+                            title="Venetian Masquerade"
+                        />
+                    </motion.div>
 
-                    <div className="masquerade__message">
+                    <motion.div
+                        className="masquerade__message"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 2.8, delay: 0.55, ease: FLUID_EASE }}
+                    >
                         <p className="masquerade__text">
                             Te invitamos a sumergirte en el encanto, el misterio y la elegancia de una inolvidable Noche de Máscara Veneciana.
                         </p>
                         <p className="masquerade__invitation">
                             Para ser parte de esta mágica temática, te pedimos amablemente <strong>traer tu propia máscara o antifaz veneciano</strong> a la recepción para celebrar juntos este baile de fantasía.
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="masquerade__action">
+                    <motion.div
+                        className="masquerade__action"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 2.8, delay: 0.7, ease: FLUID_EASE }}
+                    >
                         <Button
                             variant="secondary"
                             radius="none"
@@ -45,8 +79,8 @@ export const MasqueradeSection: React.FC = () => {
                         >
                             VER EJEMPLOS DE MÁSCARAS
                         </Button>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </div>
         </section>
     )
