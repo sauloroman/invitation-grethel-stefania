@@ -16,7 +16,7 @@ export const Envelop: React.FC = () => {
 
         // Safety fallback: if video fails to play or gets blocked, go to home after 5 seconds
         timeoutRef.current = window.setTimeout(() => {
-            goTo('/')
+            goTo('/invitation')
         }, 5000)
 
         if (videoRef.current) {
@@ -25,10 +25,10 @@ export const Envelop: React.FC = () => {
                 if (timeoutRef.current) {
                     clearTimeout(timeoutRef.current)
                 }
-                goTo('/')
+                goTo('/invitation')
             })
         } else {
-            goTo('/')
+            goTo('/invitation')
         }
     }
 
@@ -36,7 +36,7 @@ export const Envelop: React.FC = () => {
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current)
         }
-        goTo('/')
+        goTo('/invitation')
     }
 
     return (

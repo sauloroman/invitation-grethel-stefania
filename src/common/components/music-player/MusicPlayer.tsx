@@ -18,7 +18,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = (props) => {
     } = useMusicPlayer(props)
 
     if (!isMusicVisible) return null
-    if (activeVariant === 'floating' && pathname !== '/') return null
+    if (activeVariant === 'floating' && pathname !== '/invitation') return null
 
     const variantClass = `music-player--${activeVariant}`
     const playingClass = isPlaying ? 'music-player--playing' : ''

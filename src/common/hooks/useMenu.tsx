@@ -21,7 +21,7 @@ const SECTION_ICONS: Record<string, React.ReactNode> = {
     '#itinerary': <CalendarCheckIcon size={22} weight="light" />,
     '#gallery': <ImagesIcon size={22} weight="light" />,
     '#confirmation': <EnvelopeSimpleIcon size={22} weight="light" />,
-    '/envelop': <GiftIcon size={22} weight="light" />,
+    '/': <GiftIcon size={22} weight="light" />,
 }
 
 const PRIMARY_NAV_ITEMS: MenuItem[] = [
@@ -30,7 +30,7 @@ const PRIMARY_NAV_ITEMS: MenuItem[] = [
     { label: 'Itinerario', href: '#itinerary', icon: <CalendarCheckIcon size={22} weight="light" /> },
     { label: 'Galería', href: '#gallery', icon: <ImagesIcon size={22} weight="light" /> },
     { label: 'Confirmación', href: '#confirmation', icon: <EnvelopeSimpleIcon size={22} weight="light" /> },
-    { label: 'Mi Sobre Digital', href: '/envelop', icon: <GiftIcon size={22} weight="light" />, isPremium: true },
+    { label: 'Mi Sobre Digital', href: '/', icon: <GiftIcon size={22} weight="light" />, isPremium: true },
 ]
 
 export const useMenu = (props?: MenuProps) => {

@@ -20,10 +20,10 @@ export const RouterApp: React.FC = () => {
             <Menu />
             <MusicPlayer />
             <Routes>
-                {!hasTicketingSystem ? (
+                 {!hasTicketingSystem ? (
                     <>
-                        <Route path="/" element={<Invitation />} />
-                        <Route path="/envelop" element={<Envelop />} />
+                        <Route path="/" element={<Envelop />} />
+                        <Route path="/invitation" element={<Invitation />} />
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </>
                 ) : (
@@ -32,9 +32,9 @@ export const RouterApp: React.FC = () => {
 
                         {ticket ? (
                             <>
-                                <Route path="/" element={<Invitation />} />
+                                <Route path="/" element={<Envelop />} />
                                 <Route path="/ticket" element={<Ticket />} />
-                                <Route path="/envelop" element={<Envelop />} />
+                                <Route path="/invitation" element={<Invitation />} />
                                 <Route path="*" element={<Navigate to="/" replace />} />
                             </>
                         ) : (

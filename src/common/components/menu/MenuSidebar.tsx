@@ -87,7 +87,7 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
                             icon={<GiftIcon size={20} weight="light" />}
                             onClick={() => {
                                 onCloseMenu()
-                                goTo('/envelop')
+                                goTo('/')
                             }}
                         >
                             Mi Sobre Digital

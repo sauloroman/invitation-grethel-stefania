@@ -6,8 +6,8 @@ import { Invitation, Ticket, Envelop } from '@/modules'
 export const PrivateRoutes: React.FC = () => {
     return (
         <Routes>
-            <Route path='/' element={<Invitation />} />
-            <Route path='/envelop' element={<Envelop />} />
+            <Route path='/' element={<Envelop />} />
+            <Route path='/invitation' element={<Invitation />} />
             <Route path='/ticket' element={<Ticket />} />
             <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>

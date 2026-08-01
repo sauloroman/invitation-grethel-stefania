@@ -7,7 +7,7 @@ import { useMenu } from '@/common/hooks'
 import type { MenuProps } from '@/common/types'
 import { MenuSidebar } from './MenuSidebar'
 
-const HIDDEN_ROUTES = ['/envelop']
+const HIDDEN_ROUTES = ['/']
 
 export const Menu: React.FC<MenuProps> = (props) => {
     const { pathname } = useLocation()
