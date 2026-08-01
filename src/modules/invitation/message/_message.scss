@@ -36,7 +36,6 @@
 
     &__text {
         @include mix.textSerifUppercase(vars.$font-serif);
-
     }
 
     &__photo {
