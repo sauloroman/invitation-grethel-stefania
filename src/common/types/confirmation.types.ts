@@ -4,6 +4,7 @@ export interface ConfirmationFormData {
     phone: string
     willAttend: boolean
     adultsQuantity: number
+    kidsQuantity: number
 }
 
 export interface ConfirmationRequest extends ConfirmationFormData {

@@ -9,7 +9,7 @@ export const startRegisteringConfirmation = (eventId: string, data: Confirmation
         try {
             const payload: ConfirmationRequest = {
                 ...data,
-                kidsQuantity: 0,
+                kidsQuantity: data.willAttend ? (data.kidsQuantity || 0) : 0,
                 adultsQuantity: data.willAttend ? (data.adultsQuantity || 1) : 0,
                 event: eventId,
             }

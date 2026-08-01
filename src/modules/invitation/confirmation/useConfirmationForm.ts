@@ -89,6 +89,7 @@ export const useConfirmationForm = (options: UseConfirmationFormOptions = {}) =>
                 phone: data.phone?.trim() || '0000000000',
                 willAttend,
                 adultsQuantity: willAttend ? (data.adults || 1) : 0,
+                kidsQuantity: willAttend ? (data.children || 0) : 0,
             })
 
             setSubmittedData(data)
