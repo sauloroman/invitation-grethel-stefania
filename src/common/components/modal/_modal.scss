@@ -1,0 +1,113 @@
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mix;
+
+.modal {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    background-color: rgba(18, 16, 16, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    will-change: opacity;
+    animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    &__card {
+        background-color: #ffffff;
+        color: vars.$color-text-900;
+        width: 100%;
+        max-width: 52rem;
+        max-height: 88vh;
+        max-height: 88dvh;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        position: relative;
+        z-index: 1001;
+        will-change: transform, opacity;
+        animation: modalZoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.6rem 2.2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        gap: 1.6rem;
+    }
+
+    &__title {
+        font-family: vars.$font-serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: #3b3b3b;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    &__container {
+        padding: 2rem 2.2rem;
+        overflow-y: auto;
+        flex: 1;
+        font-family: vars.$font-sans;
+        font-size: 1.4rem;
+        line-height: 1.6;
+        color: vars.$color-text-700;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+        }
+    }
+
+    &--sm &__card {
+        max-width: 38rem;
+    }
+
+    &--lg &__card {
+        max-width: 68rem;
+    }
+
+    &--glass &__card {
+        @include mix.glassmorphism(0.85, 20px, rgba(255, 255, 255, 0.5));
+        background-color: rgba(255, 255, 255, 0.88);
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

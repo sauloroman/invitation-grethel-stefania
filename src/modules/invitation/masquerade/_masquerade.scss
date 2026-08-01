@@ -1,0 +1,99 @@
+@use '../../../common/styles/variables' as vars;
+@use '../../../common/styles/mixins' as mix;
+
+.masquerade {
+    padding: 8rem 0;
+    background-color: vars.$color-3-200;
+
+    &__container {
+        width: 90%;
+        max-width: 680px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__card {
+        width: 100%;
+        background-color: #ffffff;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+        padding: 4.5rem 3rem;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border-radius: 0;
+
+        @media (max-width: vars.$breakpoint-sm) {
+            padding: 3.5rem 2rem;
+        }
+
+        &-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110%;
+            height: 110%;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+    }
+
+    &__mask-img {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 2rem;
+        transition: transform 0.4s ease;
+
+        &:hover {
+            transform: scale(1.04) rotate(-2deg);
+        }
+
+        img {
+            width: 13rem;
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.15));
+        }
+    }
+
+    &__message {
+        position: relative;
+        z-index: 1;
+        max-width: 500px;
+        margin-top: -2rem;
+    }
+
+    &__text {
+        @include mix.textSerifUppercase(vars.$font-serif);
+        font-size: 1.15rem;
+        color: vars.$color-tertiary-500;
+        margin-bottom: 1.2rem;
+    }
+
+    &__invitation {
+        @include mix.textSerifUppercase(vars.$font-serif);
+        font-size: 1.05rem;
+        color: vars.$color-text-700;
+
+        strong {
+            color: vars.$color-1;
+            font-weight: 600;
+        }
+    }
+
+    &__action {
+        position: relative;
+        z-index: 1;
+        margin-top: 1rem;
+    }
+}

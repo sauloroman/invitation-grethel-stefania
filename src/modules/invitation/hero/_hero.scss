@@ -1,0 +1,202 @@
+@use '../../../common/styles/variables' as vars;
+@use '../../../common/styles/mixins' as mix;
+
+.hero {
+    min-height: 60rem;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    overflow: hidden;
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: left center;
+        background-repeat: no-repeat;
+        z-index: 1;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        padding-top: 5vh;
+        padding-right: 8%;
+        padding-left: 2rem;
+        width: 100%;
+        max-width: 480px;
+        margin-left: auto;
+    }
+
+    /* Header: SAVE the DATE */
+    &__subtitle {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        margin-bottom: 6rem;
+        width: 100%;
+
+        &-text {
+            font-family: vars.$font-serif;
+            font-size: 2.4rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            color: vars.$color-tertiary-500;
+        }
+
+        &-script {
+            font-size: 2.2rem;
+            color: vars.$color-tertiary-500;
+            padding: 0 .6rem;
+        }
+    }
+
+    /* Fine Calligraphic Cursive Names Layout */
+    &__names {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+        margin-bottom: 6rem;
+
+        img {
+            width: 20rem;
+        }
+    }
+
+    &__name-line {
+        font-family: 'Pinyon Script', 'Alex Brush', cursive;
+        font-size: 4.2rem;
+        font-weight: 400;
+        color: #383838;
+        line-height: 1.15;
+        letter-spacing: 0.01em;
+        text-align: right;
+
+        &--top {
+            margin-bottom: 0.2rem;
+            padding-right: 1.5rem;
+        }
+
+        &--bottom {
+            margin-top: 0.2rem;
+            padding-right: 0;
+        }
+    }
+
+    &__name-connector {
+        font-family: 'Pinyon Script', 'Alex Brush', cursive;
+        font-size: 2.2rem;
+        color: #555555;
+        align-self: flex-end;
+        padding-right: 2rem;
+        margin-top: -0.4rem;
+        margin-bottom: -0.4rem;
+    }
+
+    /* Date & Location */
+    &__details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        gap: 0.6rem;
+        width: 100%;
+    }
+
+    &__date {
+        font-family: vars.$font-serif;
+        font-size: 1.7rem;
+        font-weight: 300;
+        letter-spacing: 0.35em;
+        color: #383838;
+        text-transform: uppercase;
+    }
+
+    &__location {
+        font-family: vars.$font-serif;
+        font-size: 0.95rem;
+        font-weight: 300;
+        letter-spacing: 0.35em;
+        color: #666666;
+        text-transform: uppercase;
+        margin-top: 0.2rem;
+    }
+
+    /* Scroll Indicator */
+    &__scroll {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        color: #666666;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &-text {
+            font-family: vars.$font-sans;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        &-arrows {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -0.4rem;
+        }
+
+        &-arrow {
+            animation: bounceArrow 1.6s infinite ease-in-out;
+
+            &--1 {
+                animation-delay: 0s;
+            }
+
+            &--2 {
+                margin-top: -0.5rem;
+                animation-delay: 0.2s;
+            }
+        }
+    }
+}
+
+@keyframes bounceArrow {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: translateY(6px);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,183 @@
+@use '../../../common/styles/variables' as vars;
+@use '../../../common/styles/mixins' as mix;
+
+.family {
+    padding: 8rem 0;
+    background-color: vars.$color-3-200;
+
+    &__card {
+        width: 90%;
+        max-width: 580px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+        padding: 5rem 3rem 13rem;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+
+        @include mix.respond-to(xs) {
+            padding: 4rem 1.8rem 11rem;
+        }
+
+        &-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        &-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+    }
+
+    &__family-draw {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+        pointer-events: none;
+        line-height: 0;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+    }
+
+    /* Mensaje / Cita bíblica */
+    &__quote {
+        max-width: 460px;
+        margin: 0 auto 3rem;
+
+        &-text {
+            font-family: vars.$font-serif;
+            font-style: italic;
+            font-size: 1.35rem;
+            line-height: 1.7;
+            color: #4a4a4a;
+        }
+
+        &-author {
+            display: block;
+            margin-top: 1rem;
+            font-family: vars.$font-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: vars.$color-tertiary-500;
+            text-transform: uppercase;
+        }
+    }
+
+    /* Encabezado Bendición */
+    &__blessing {
+        margin-bottom: 3.5rem;
+
+        p {
+            @include mix.textSerifUppercase(vars.$font-serif);
+        }
+    }
+
+    /* Padres y Padrinos */
+    &__family {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+        width: 100%;
+
+        &-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &-title {
+            font-family: vars.$font-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: vars.$color-tertiary-500;
+            margin-bottom: 1rem;
+        }
+
+        &-names {
+            font-family: vars.$font-cursive;
+            font-size: 4.2rem;
+            line-height: 1.1;
+            color: vars.$color-secondary-600;
+            font-weight: 500;
+        }
+
+        &-amp {
+            font-family: 'Pinyon Script', vars.$font-cursive;
+            font-size: 2.2rem;
+            color: vars.$color-tertiary-500;
+            display: inline-block;
+            margin: 0.2rem 0;
+        }
+
+        &-divider {
+            font-size: 1.2rem;
+            color: vars.$color-tertiary-500;
+            opacity: 0.6;
+        }
+    }
+
+    &__photo {
+        position: relative;
+        width: 80%;
+        height: 40rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5rem auto;
+        margin-top: 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(vars.$color-secondary-600, 0.1);
+        }
+    }
+
+    /* Texto invitatorio */
+    &__invitation-text {
+        margin-bottom: 3.5rem;
+
+        p {
+            font-family: vars.$font-serif;
+            font-size: 1.35rem;
+            font-style: italic;
+            color: #555555;
+            letter-spacing: 0.05em;
+        }
+    }
+}

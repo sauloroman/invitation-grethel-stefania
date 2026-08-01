@@ -1,0 +1,131 @@
+{
+  "theme": {
+    "fontPack": 4,
+    "palette": 4,
+    "buttonVariant": "primary",
+    "menu": {
+      "show": true,
+      "variant": "bar",
+      "title": "Grethel Stefania",
+      "buttonVariant": "icon"
+    },
+    "music": {
+      "show": true,
+      "variant": "floating",
+      "buttonVariant": "primary",
+      "songTitle": "Música de fondo",
+      "artistName": "Música del evento"
+    }
+  },
+  "config": {
+    "hasTicketingSystem": false,
+    "hasRSVP": true,
+    "hasMusic": true,
+    "hasMenu": true
+  },
+  "sections": {
+    "hero": {
+      "showHero": true,
+      "names": "Grethel Stefania",
+      "subtitle": "Nos complace invitarte a celebrar el día más importante de nuestras vidas",
+      "date": "22.08.2026",
+      "bgImage": ""
+    },
+    "message": {
+      "showMessage": true,
+      "message": "Te invitamos de corazón a acompañarnos en este momento tan especial y celebrar juntos el amor que nos une."
+    },
+    "countdown": {
+      "showCountdown": true,
+      "targetDate": "2026-08-22T17:00:00"
+    },
+    "places": {
+      "showPlaces": true,
+      "locations": [
+        {
+          "title": "Ceremonia Religiosa",
+          "location": "Templo Del Sagrado Corazón de Jesús Av. 5 de Mayo 602",
+          "time": "17:00 HRS",
+          "date": "2026-08-22",
+          "url": "https://maps.app.goo.gl/rt712cNoghh3CgrD6"
+        },
+        {
+          "title": "Recepción & Fiesta",
+          "location": "Salón Medina Av. Río Verde frente a Norias de Paso Hondo",
+          "time": "19:00 HRS",
+          "date": "2026-08-22",
+          "url": "https://www.google.com/maps/place/21%C2%B051'05.3%22N+102%C2%B012'26.6%22W/@21.8514614,-102.2073975,17z/data=!4m4!3m3!8m2!3d21.8514614!4d-102.2073975?hl=es"
+        }
+      ]
+    },
+    "itinerary": {
+      "showItinerary": true,
+      "itinerary": [
+        {
+          "time": "19:00 HRS",
+          "event": "Recepción de invitados"
+        },
+        {
+          "time": "20:00 HRS",
+          "event": "Toma de alimentos"
+        },
+        {
+          "time": "21:00 HRS",
+          "event": "Se abre la pista"
+        },
+        {
+          "time": "21:30 HRS",
+          "event": "Entrada para Vals y Brindis"
+        },
+        {
+          "time": "22:00 HRS",
+          "event": "Música DJ"
+        },
+        {
+          "time": "00:00 HRS",
+          "event": "Grupo Norteño"
+        },
+        {
+          "time": "02:00 HRS",
+          "event": "Fin del Evento"
+        },
+        {
+          "time": "-11",
+          "event": "-1"
+        }
+      ]
+    },
+    "dressCode": {
+      "showDressCode": true,
+      "title": "Código de Vestimenta",
+      "description": "Te sugerimos vestir de etiqueta semi-formal.",
+      "attire": {
+        "men": "Traje oscuro y corbata.",
+        "women": "Vestido largo o cocktail."
+      },
+      "colors": {
+        "suggested": [
+          "negro",
+          "azul oscuro"
+        ],
+        "avoid": [
+          "blanco",
+          "beige"
+        ]
+      }
+    },
+    "gallery": {
+      "showGallery": true,
+      "title": "Galería de Fotos",
+      "images": []
+    },
+    "presents": {
+      "showPresents": true,
+      "title": "Mesa de Regalos Liverpool",
+      "url": "https://mesaderegalos.liverpool.com.mx"
+    },
+    "confirmation": {
+      "showConfirmation": true
+    }
+  }
+}
