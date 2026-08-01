@@ -5,6 +5,7 @@ import { useConfetti, useToast, useConfirmation } from '@/common/hooks'
 export interface ConfirmationFormData {
     attending: 'si' | 'no'
     fullName: string
+    phone: string
     adults: number
     children: number
 }
@@ -33,6 +34,7 @@ export const useConfirmationForm = (options: UseConfirmationFormOptions = {}) =>
         defaultValues: {
             attending: 'si',
             fullName: '',
+            phone: '',
             adults: 1,
             children: 0,
         },
@@ -84,7 +86,7 @@ export const useConfirmationForm = (options: UseConfirmationFormOptions = {}) =>
             await registerConfirmation({
                 firstName,
                 lastName,
-                phone: '0000000000',
+                phone: data.phone?.trim() || '0000000000',
                 willAttend,
                 adultsQuantity: willAttend ? (data.adults || 1) : 0,
             })
@@ -117,6 +119,7 @@ export const useConfirmationForm = (options: UseConfirmationFormOptions = {}) =>
         reset({
             attending: 'si',
             fullName: '',
+            phone: '',
             adults: 1,
             children: 0,
         })

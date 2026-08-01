@@ -3,6 +3,7 @@ import {
     CheckCircleIcon,
     XCircleIcon,
     UserIcon,
+    PhoneIcon,
     UsersIcon,
     BabyIcon,
     PaperPlaneRightIcon,
@@ -93,7 +94,7 @@ export const ConfirmationForm: React.FC<ConfirmationFormProps> = ({ onSuccessSub
                     icon={<ArrowCounterClockwiseIcon size={18} />}
                     onClick={handleResetForm}
                 >
-                    Modificar respuesta
+                    Volver a Registrar
                 </Button>
             </div>
         )
@@ -171,8 +172,33 @@ export const ConfirmationForm: React.FC<ConfirmationFormProps> = ({ onSuccessSub
             </div>
 
             <div className="confirmation-form__group">
+                <label className="confirmation-form__label" htmlFor="phone">
+                    3. Número de teléfono <span className="confirmation-form__required">*</span>
+                </label>
+                <div className="confirmation-form__input-wrapper">
+                    <PhoneIcon className="confirmation-form__input-icon" size={20} />
+                    <input
+                        id="phone"
+                        type="tel"
+                        className={`confirmation-form__input ${errors.phone ? 'confirmation-form__input--error' : ''}`}
+                        placeholder="Ej. 555 123 4567"
+                        {...register('phone', {
+                            required: 'Por favor ingresa tu número de teléfono',
+                            minLength: {
+                                value: 7,
+                                message: 'El número debe tener al menos 7 dígitos',
+                            },
+                        })}
+                    />
+                </div>
+                {errors.phone && (
+                    <span className="confirmation-form__error">{errors.phone.message}</span>
+                )}
+            </div>
+
+            <div className="confirmation-form__group">
                 <label className="confirmation-form__label" htmlFor="adults">
-                    3. Cantidad de adultos <span className="confirmation-form__required">*</span>
+                    4. Cantidad de adultos <span className="confirmation-form__required">*</span>
                 </label>
                 <div className="confirmation-form__counter-wrapper">
                     <div className="confirmation-form__counter-info">
@@ -223,7 +249,7 @@ export const ConfirmationForm: React.FC<ConfirmationFormProps> = ({ onSuccessSub
 
             <div className="confirmation-form__group">
                 <label className="confirmation-form__label" htmlFor="children">
-                    4. Cantidad de niños
+                    5. Cantidad de niños
                 </label>
                 <div className="confirmation-form__counter-wrapper">
                     <div className="confirmation-form__counter-info">
