@@ -54,6 +54,36 @@
         max-width: 480px;
     }
 
+    &__hour {
+        text-align: center;
+        font-size: 2.4rem;
+        margin-top: 0.8rem;
+        margin-bottom: 2.4rem;
+        color: vars.$color-secondary-900;
+    }
+
+    &__note {
+        font-family: vars.$font-serif;
+        font-size: 1.15rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: vars.$color-tertiary-700;
+        line-height: 1.6;
+
+        // Subtle badge style
+        background-color: vars.$color-secondary-100;
+        border: 1px solid vars.$color-secondary-200;
+        padding: 1.2rem 2rem;
+        border-radius: 0.8rem;
+        box-shadow: 0 2px 8px rgba(vars.$color-secondary-900, 0.04);
+
+        margin-top: 0.5rem;
+        margin-bottom: 2.8rem;
+        max-width: 440px;
+        text-align: center;
+    }
+
     &__address {
         font-family: vars.$font-serif;
         font-size: 1.45rem;

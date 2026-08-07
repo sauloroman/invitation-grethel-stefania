@@ -1,8 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { useInvitationConfig } from '@/common/hooks'
+import { useInvitationConfig, useModal } from '@/common/hooks'
 import { Button } from '@/common/components/button/Button'
-import { MapPinIcon } from '@phosphor-icons/react'
+import { MapPinIcon, ImageIcon } from '@phosphor-icons/react'
+import { MODAL_NAMES } from '@/store/ui/modal.slice'
 
 import logo from '@/assets/images/icons/logo.png'
 import place from '@/assets/images/icons/cabania.svg'
@@ -11,6 +12,7 @@ const FLUID_EASE = [0.22, 1, 0.36, 1] as const
 
 export const PlacesSection: React.FC = () => {
     const { sections } = useInvitationConfig()
+    const { onOpenModal } = useModal()
     const locations = sections.places?.locations ?? []
 
     return (
@@ -50,18 +52,37 @@ export const PlacesSection: React.FC = () => {
                         >
                             <h2 className="places__title">{loc.title}</h2>
                             <p className="places__address">{loc.location}</p>
+                            <p className="places__hour">{loc.time}</p>
 
-                            {loc.url && (
+                            {loc.note && (
+                                <p className="places__note">{loc.note}</p>
+                            )}
+
+                            {(loc.url || loc.showPhotos) && (
                                 <div className="places__action">
-                                    <Button
-                                        variant="secondary"
-                                        radius="full"
-                                        icon={<MapPinIcon size={18} weight="thin" />}
-                                        onClick={() => window.open(loc.url, '_blank', 'noopener,noreferrer')}
-                                        aria-label={`Ver ubicación de ${loc.title}`}
-                                    >
-                                        VER UBICACIÓN
-                                    </Button>
+                                    {loc.url && (
+                                        <Button
+                                            variant="secondary"
+                                            radius="full"
+                                            icon={<MapPinIcon size={18} weight="thin" />}
+                                            onClick={() => window.open(loc.url, '_blank', 'noopener,noreferrer')}
+                                            aria-label={`Ver ubicación de ${loc.title}`}
+                                        >
+                                            VER UBICACIÓN
+                                        </Button>
+                                    )}
+
+                                    {loc.showPhotos && (
+                                        <Button
+                                            variant="secondary"
+                                            radius="full"
+                                            icon={<ImageIcon size={18} weight="thin" />}
+                                            onClick={() => onOpenModal(MODAL_NAMES.placePhotos, 'Fotos del Salón')}
+                                            aria-label="Ver fotos de salón"
+                                        >
+                                            VER FOTOS DE SALÓN
+                                        </Button>
+                                    )}
                                 </div>
                             )}
                         </motion.div>

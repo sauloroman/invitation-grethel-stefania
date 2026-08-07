@@ -84,7 +84,9 @@
           "location": "Salón Medina Av. Río Verde frente a Norias de Paso Hondo",
           "time": "19:00 HRS",
           "date": "2026-08-22",
-          "url": "https://www.google.com/maps/place/21%C2%B051'05.3%22N+102%C2%B012'26.6%22W/@21.8514614,-102.2073975,17z/data=!4m4!3m3!8m2!3d21.8514614!4d-102.2073975?hl=es"
+          "url": "https://www.google.com/maps/place/21%C2%B051'05.3%22N+102%C2%B012'26.6%22W/@21.8514614,-102.2073975,17z/data=!4m4!3m3!8m2!3d21.8514614!4d-102.2073975?hl=es",
+          "note": "Continuar sobre Rio Verde y llegar hasta el fondo a la izquierda para localizar el salón",
+          "showPhotos": true
         }
       ]
     },
@@ -105,6 +107,10 @@
       "showItinerary": true,
       "title": "Itinerario",
       "itinerary": [
+        {
+          "time": "17:00 HRS",
+          "event": "Ceremonia Religiosa"
+        },
         {
           "time": "19:00 HRS",
           "event": "Recepción de invitados"

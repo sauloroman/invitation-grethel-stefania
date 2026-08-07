@@ -33,6 +33,8 @@ export interface LocationItem {
     time?: string
     date?: string
     url?: string
+    note?: string
+    showPhotos?: boolean
 }
 
 export interface SectionsConfig {
