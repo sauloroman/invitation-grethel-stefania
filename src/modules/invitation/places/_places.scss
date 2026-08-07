@@ -82,6 +82,10 @@
         margin-bottom: 2.8rem;
         max-width: 440px;
         text-align: center;
+
+        span {
+            font-weight: bold;
+        }
     }
 
     &__address {

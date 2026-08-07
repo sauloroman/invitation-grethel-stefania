@@ -55,7 +55,7 @@ export const PlacesSection: React.FC = () => {
                             <p className="places__hour">{loc.time}</p>
 
                             {loc.note && (
-                                <p className="places__note">{loc.note}</p>
+                                <p className="places__note"><span>ATENCIÓN:</span> {loc.note}</p>
                             )}
 
                             {(loc.url || loc.showPhotos) && (
