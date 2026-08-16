@@ -5,6 +5,7 @@ export const MODAL_NAMES = {
     RSVP: 'RSVP',
     gallery: 'gallery',
     placePhotos: 'placePhotos',
+    locationVideo: 'locationVideo',
 } as const
 
 export type ModalName = typeof MODAL_NAMES[keyof typeof MODAL_NAMES];

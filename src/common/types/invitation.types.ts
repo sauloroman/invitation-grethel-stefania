@@ -35,6 +35,7 @@ export interface LocationItem {
     url?: string
     note?: string
     showPhotos?: boolean
+    showVideo?: boolean
 }
 
 export interface SectionsConfig {

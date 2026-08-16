@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useInvitationConfig, useModal } from '@/common/hooks'
 import { Button } from '@/common/components/button/Button'
-import { MapPinIcon, ImageIcon } from '@phosphor-icons/react'
+import { MapPinIcon, ImageIcon, NavigationArrowIcon } from '@phosphor-icons/react'
 import { MODAL_NAMES } from '@/store/ui/modal.slice'
 
 import logo from '@/assets/images/icons/logo.png'
@@ -58,7 +58,7 @@ export const PlacesSection: React.FC = () => {
                                 <p className="places__note"><span>ATENCIÓN:</span> {loc.note}</p>
                             )}
 
-                            {(loc.url || loc.showPhotos) && (
+                            {(loc.url || loc.showPhotos || loc.showVideo) && (
                                 <div className="places__action">
                                     {loc.url && (
                                         <Button
@@ -69,6 +69,18 @@ export const PlacesSection: React.FC = () => {
                                             aria-label={`Ver ubicación de ${loc.title}`}
                                         >
                                             VER UBICACIÓN
+                                        </Button>
+                                    )}
+
+                                    {loc.showVideo && (
+                                        <Button
+                                            variant="secondary"
+                                            radius="full"
+                                            icon={<NavigationArrowIcon size={18} weight="thin" />}
+                                            onClick={() => onOpenModal(MODAL_NAMES.locationVideo, 'Cómo Llegar')}
+                                            aria-label="Ver cómo llegar"
+                                        >
+                                            VER VIDEO DE CÓMO LLEGAR
                                         </Button>
                                     )}
 

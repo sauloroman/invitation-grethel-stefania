@@ -243,6 +243,18 @@ export const DressCodeSection: React.FC = () => {
                         </motion.div>
                     </div>
                 </motion.div>
+
+                <motion.div
+                    className="dress-code__note"
+                    initial={{ opacity: 0, y: 25, scale: 0.96 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 3.0, delay: 1.2, ease: FLUID_EASE }}
+                >
+                    <p className="dress-code__note-text">
+                        <strong>LO MÁS IMPORTANTE ES TU PRESENCIA:</strong> Si no te es posible llevar este tipo de vestimenta, ¡no te preocupes! Lo importante es celebrar juntos este día tan especial, ven con la ropa que tengas disponible y te sientas cómodo(a).
+                    </p>
+                </motion.div>
             </div>
         </section>
     )
